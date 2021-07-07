@@ -26,9 +26,17 @@ export function AppointmentsCreate() {
         setOpemGuildsModal(true);
     }
 
+    function handleCloseGuilds(){
+        setOpemGuildsModal(false);
+    }
+
     function handleGuildSelect(guildSelect: GuildProps) {
         setGuild(guildSelect);
         setOpemGuildsModal(false);
+    }
+
+    function handleCategorySelect(categoryId: string) {
+        setCategory(categoryId);
     }
 
     return(
@@ -36,6 +44,7 @@ export function AppointmentsCreate() {
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             style={styles.container}
         >
+            <Background>
             <ScrollView>
                 <Header 
                     title="Agendar partida"
@@ -52,7 +61,7 @@ export function AppointmentsCreate() {
 
                 <CategorySelectList 
                     hasCheckBox
-                    setCategory={setCategory}
+                    setCategory={handleCategorySelect}
                     categorySelected={category}
                 />
 
@@ -76,7 +85,7 @@ export function AppointmentsCreate() {
                     
                     <View style={styles.field}>
                         <View>
-                            <Text style={styles.label}>
+                            <Text style={[ styles.label, { marginBottom: 12 }]}>
                                 Dia e mês
                             </Text>
 
@@ -90,7 +99,7 @@ export function AppointmentsCreate() {
                         </View>
 
                         <View>
-                            <Text style={styles.label}>
+                            <Text style={[ styles.label, { marginBottom: 12 }]}>
                                 Hora e minuto
                             </Text>
 
@@ -127,7 +136,8 @@ export function AppointmentsCreate() {
                     </View>
                 </View>
             </ScrollView>
-            <ModalView visible={openGuildsModal}>
+            </Background>
+            <ModalView visible={openGuildsModal} closeModal={handleCloseGuilds}>
                 <Guilds handleGuildSelected={handleGuildSelect} />
             </ModalView>
         </KeyboardAvoidingView>

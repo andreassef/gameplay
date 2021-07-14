@@ -7,7 +7,7 @@ Aplicativo desenvolvido com Expo em React Native durante a Next Level Week 6.
  - Integração com discord
  - Contextos e hooks
  - Storage com AsyncStorage
- - Nevegação
+ - Navegação
  - Function Component
  
  
